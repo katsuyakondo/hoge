@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Page</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/textinput.css" />
 </head>
+
 <body>
-    <h1>Welcome to My Home Page!</h1>
-    <p>This is a custom home page for my Laravel project.</p>
+    <div class="android-large">
+        <div class="overlap-group">
+            <div class="frame">
+                <div class="text-wrapper">
+                    <textarea id="auto-focus-field" name="input"
+                        placeholder="今感じていることを言葉を選ばなくても良いから思いのままぶつけてほしい！"></textarea>
+                </div>
+            </div>
+            <input type="button" id="sendButton" value="送信する">
+            <div id="aiResponse"></div>
+        </div>
+    </div>
 </body>
-</html>
+
+<script>
+    async function sendToAI() {
+    const input = document.getElementById('auto-focus-field').value;
+    // URLをLaravelのルーティングに合わせて'/chat'に変更
+    const response = await fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // ヘッダーをJSONに変更
+        },
+        body: JSON.stringify({
+            userInput: input // ボディの形式もJSONに合わせて修正
+        })
+    });
+    const data = await response.json();
+    document.getElementById('aiResponse').innerText = data.choices[0].message.content;
+}
+
+</script>
