@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/textinput.css" />
+    <script src="{{ asset('js/chat.js') }}"></script>
+
 </head>
 
 <body>
