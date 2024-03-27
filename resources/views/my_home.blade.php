@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/textinput.css" />
-    <script src="{{ asset('js/chat.js') }}"></script>
+    <script src="{{ mix('js/chat.js') }}"></script>
 
 </head>
 
