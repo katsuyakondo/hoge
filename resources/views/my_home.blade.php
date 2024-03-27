@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="css/textinput.css" />
-    <script src="{{ mix('js/chat.js') }}"></script>
-
+    @vite(['resources/js/chat.js'])
 </head>
 
 <body>

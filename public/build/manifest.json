@@ -10,5 +10,11 @@
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
+  },
+  "resources/js/chat.js": {
+    "file": "assets/chat-kPNkZt1c.js",
+    "name": "chat",
+    "src": "resources/js/chat.js",
+    "isEntry": true
   }
 }
