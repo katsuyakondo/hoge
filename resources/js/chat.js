@@ -1,3 +1,5 @@
+
+console.log('Script loaded');
 document.addEventListener('DOMContentLoaded', function () {
     // テキストエリアにフォーカスを当て、プレースホルダーをクリア
     var inputField = document.getElementById('auto-focus-field');
