@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @vite(['resources/js/chat.js'])
-    @vite(['resources/css/textinput.css'])
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
