@@ -42,4 +42,27 @@ class ChatController extends Controller
         // レスポンスをクライアントに返送
         return $response->json();
     }
+    public function getWeatherData()
+    {
+        // ここには実際のAPIキーをセットするか、環境設定ファイルから取得します
+        $apiKey = config('services.openweathermap.key'); 
+
+        // APIリクエストのURL。ここではロンドンの天気を取得する例です。
+        $url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid={$apiKey}";
+
+        try {
+            $response = Http::get($url);
+
+            if ($response->successful()) {
+                // APIからのレスポンスが成功した場合の処理
+                return response()->json($response->json(), 200);
+            } else {
+                // APIからのレスポンスが失敗した場合の処理
+                return response()->json(["error" => "Failed to retrieve weather data"], $response->status());
+            }
+        } catch (\Exception $e) {
+            // 例外が発生した場合の処理
+            return response()->json(["error" => $e->getMessage()], 500);
+        }
+    }
 }
