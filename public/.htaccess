@@ -19,6 +19,5 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    # テスト用のリライトルールを追加
-    RewriteRule ^test_rewrite$ test.php [L]
+
 </IfModule>
