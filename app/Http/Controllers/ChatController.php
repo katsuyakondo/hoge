@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator; // バリデーションのために追加
+use Illuminate\Support\Facades\Log; // Log ファサードを追加
 
 class ChatController extends Controller
 {
@@ -36,7 +37,14 @@ class ChatController extends Controller
 
         // APIからのレスポンスが失敗した場合にエラーレスポンスを返す
         if ($response->failed()) {
-            return response()->json(["error" => "API request failed"], 500);
+             $statusCode = $response->status(); // HTTPステータスコードを取得
+            $errorMessage = $response->body(); // エラーメッセージ（レスポンスボディ）を取得
+
+            // ステータスコードとエラーメッセージをログに記録
+            Log::error("API request failed with status {$statusCode}: {$errorMessage}");
+
+
+            return response()->json(["error" => "API request failed", "statusCode" => $statusCode], 500);
         }
 
         // レスポンスをクライアントに返送

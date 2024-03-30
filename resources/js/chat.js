@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     // テキストエリアにフォーカスを当て、プレースホルダーをクリア
     var inputField = document.getElementById('auto-focus-field');
@@ -11,14 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const sendButton = document.getElementById('sendButton');
     sendButton.addEventListener('click', function () {
         const userInput = document.getElementById('auto-focus-field').value;
-         console.log("Sending to AI:", userInput); // ユーザー入力のログ
         sendToAI(userInput);
     });
 });
 
 async function sendToAI(userInput) {
     try {
-        const response = await fetch('/chat', {
+        const response = await fetch('/send-chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -32,11 +30,8 @@ async function sendToAI(userInput) {
         }
 
         const data = await response.json();
-        console.log("Response from AI:", data); // APIからのレスポンスのログ
         document.getElementById('aiResponse').innerText = data.choices[0].message.content;
     } catch (error) {
         console.error('Error:', error);
     }
 }
-
-
