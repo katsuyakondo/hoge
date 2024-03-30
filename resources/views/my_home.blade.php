@@ -20,8 +20,7 @@
             <div id="aiResponse"></div>
         </div>
     </div>
-    <button id="loadWeather">天気を取得する</button>
-<div id="weatherResult"></div>
+
 </body>
 
 

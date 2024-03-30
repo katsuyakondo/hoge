@@ -39,11 +39,4 @@ async function sendToAI(userInput) {
     }
 }
 
-document.getElementById('loadWeather').addEventListener('click', function() {
-    fetch('/weather')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('weatherResult').innerText = JSON.stringify(data, null, 2);
-        })
-        .catch(error => console.error('Error:', error));
-});
+
