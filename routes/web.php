@@ -10,4 +10,4 @@ Route::get('/', function () {
 Route::post('/chat', 'App\Http\Controllers\ChatController@sendToAI');
 // チャットAPIへのPOSTリクエストを処理するルート
 Route::post('/send-chat', [ChatController::class, 'sendToAI']);
-Route::get('/weather', 'App\Http\Controllers\ChatController@getWeatherData');
+Route::get('/weather', [ChatController::class, 'getWeatherData']);

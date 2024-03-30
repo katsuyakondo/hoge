@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 async function sendToAI(userInput) {
-        console.log("sendToAI called with input:", userInput); // 関数が呼び出されたことをログに記録
     try {
         const response = await fetch('/chat', {
             method: 'POST',
