@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // テキストエリアにフォーカスを当て、プレースホルダーをクリア
     var inputField = document.getElementById('auto-focus-field');
     inputField.focus();
     setTimeout(function () {
         inputField.placeholder = '';
     }, 1000);
 
-    // 送信ボタンクリックイベントの設定
     const sendButton = document.getElementById('sendButton');
     sendButton.addEventListener('click', function () {
         const userInput = document.getElementById('auto-focus-field').value;
@@ -25,13 +23,21 @@ async function sendToAI(userInput) {
             body: `userInput=${encodeURIComponent(userInput)}`
         });
 
+        const data = await response.json(); // レスポンスのJSONを常に先にパースする
+
         if (!response.ok) {
-            throw new Error('Network response was not ok.');
+            // エラーレスポンスの内容を利用して、エラーメッセージを表示
+            console.error('Error Response:', data);
+            // エラーメッセージをUIに表示する例
+            document.getElementById('aiResponse').innerText = data.error ? data.error : 'Unknown error occurred';
+            return; // ここで処理を終了
         }
 
-        const data = await response.json();
+        // 成功した場合の処理
         document.getElementById('aiResponse').innerText = data.choices[0].message.content;
     } catch (error) {
         console.error('Error:', error);
+        // ネットワークエラーなどの場合に、エラーメッセージをUIに表示する例
+        document.getElementById('aiResponse').innerText = 'Error sending request.';
     }
 }

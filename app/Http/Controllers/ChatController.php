@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator; // バリデーションのために追加
-use Illuminate\Support\Facades\Log; // Log ファサードを追加
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class ChatController extends Controller
 {
@@ -22,8 +22,7 @@ class ChatController extends Controller
         }
 
         $input = $request->input('userInput');
-        // config/services.phpで定義したAPIキーを使用する
-        $apiKey = config('services.openai.key'); // .envやconfig/services.phpからAPIキーを取得
+        $apiKey = config('services.openai.key');
 
         // OpenAI APIへのリクエストを送信
         $response = Http::withHeaders([
@@ -37,14 +36,17 @@ class ChatController extends Controller
 
         // APIからのレスポンスが失敗した場合にエラーレスポンスを返す
         if ($response->failed()) {
-             $statusCode = $response->status(); // HTTPステータスコードを取得
-            $errorMessage = $response->body(); // エラーメッセージ（レスポンスボディ）を取得
+            $statusCode = $response->status();
+            $errorResponse = $response->body();
 
-            // ステータスコードとエラーメッセージをログに記録
-            Log::error("API request failed with status {$statusCode}: {$errorMessage}");
+            Log::error("API request failed with status {$statusCode}: {$errorResponse}");
 
-
-            return response()->json(["error" => "API request failed", "statusCode" => $statusCode], 500);
+            // エラーレスポンスボディをクライアントに返送
+            return response()->json([
+                "error" => "API request failed",
+                "statusCode" => $statusCode,
+                "errorDetails" => json_decode($errorResponse, true)
+            ], 500);
         }
 
         // レスポンスをクライアントに返送
