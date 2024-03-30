@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 
 Route::get('/', function () {
-    return view('my_home');
+    return view('top');
 });
 
 Route::post('/chat', 'App\Http\Controllers\ChatController@sendToAI');
