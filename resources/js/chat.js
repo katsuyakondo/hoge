@@ -1,5 +1,4 @@
 
-console.log('Script loaded');
 document.addEventListener('DOMContentLoaded', function () {
     // テキストエリアにフォーカスを当て、プレースホルダーをクリア
     var inputField = document.getElementById('auto-focus-field');
@@ -40,3 +39,12 @@ async function sendToAI(userInput) {
         console.error('Error:', error);
     }
 }
+
+document.getElementById('loadWeather').addEventListener('click', function() {
+    fetch('/weather')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('weatherResult').innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(error => console.error('Error:', error));
+});
