@@ -1,77 +1,53 @@
-        .android-large {
-            width: 360px;
-            height: 800px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: auto;
-        }
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f5f5f5;
+    /* 背景色の変更 */
+    color: #333;
+    /* テキストの色 */
+}
 
-        .android-large .overlap-group {
-            height: 800px;
-            border: 5px solid;
-            border-color: #d9d9d9;
-        }
+.android-large {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 影を追加して立体感を出す */
+    border: none;
+    /* 枠線を除去 */
+}
 
-        .android-large .frame {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 330px;
-            min-height: 173px;
-            /* テキストエリアとボタンを含むために高さを調整 */
-            gap: 10px;
-            position: relative;
-            top: 5px;
-            left: 9px;
-            background-color: #d9d9d9;
-            border-radius: 20px 20px 20px 0px;
-            overflow: hidden;
+.rectangle {
+    background-color: #007bff;
+    /* ボタンやハイライトに使う色を明るく */
+}
 
-        }
+.div,
+.text-wrapper-2,
+.text-wrapper-3 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* テキストに影をつけて読みやすくする */
+}
 
-        .android-large .text-wrapper {
-            position: relative;
-            width: 300px;
-            font-family: "Roboto-Regular", Helvetica;
-            font-weight: 400;
-            color: #000000;
-            font-size: 18px;
-            text-align: center;
-            letter-spacing: 0.25px;
-            line-height: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
+/* ボタンのスタイルを改善 */
+a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    /* アンダーラインを除去 */
+    font-weight: 500;
+    /* フォントの重さを調整 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* ボタンに影をつける */
+}
 
-        #auto-focus-field {
-            width: 330px;
-            height: 133px;
-            background-color: #d9d9d9;
-            border-radius: 20px 20px 20px 0px;
-            padding: 10px;
-            border: none;
-            resize: none;
-            outline: none;
-        }
+a:hover {
+    background-color: #0056b3;
+    /* ホバー時の色を暗くする */
+}
 
-        input[type="button"] {
-            display: block;
-            width: 150px;
-            height: 40px;
-            background-color: #acd4d4;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            outline: none;
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        input[type="button"]:hover {
-            background-color: #acd4d4;
-        }
+/* 要素の間隔と配置を調整 */
+.overlap-group {
+    padding: 20px;
+    box-sizing: border-box;
+    /* パディングを含むサイズ計算に変更 */
+}
